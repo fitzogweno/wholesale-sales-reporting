@@ -1,93 +1,76 @@
-Wholesale Sales Reporting System
+Nairobi Distributor – Customer Revenue Analysis
 Project Overview
 
-This project automates weekly sales reporting for a Nairobi wholesale distributor.
+This project analyses customer purchasing behaviour and revenue distribution for a wholesale distributor operating across seven Kenyan counties.
 
-The distributor stores customer orders in an SQLite database. Python, SQL and pandas are used to generate five business reports automatically.
-
-The aim is to reduce manual reporting work and help management make better business decisions.
+Using SQLite, SQL and Python (pandas), the project examines customer account tiers, repeat purchasing behaviour, and county-level revenue concentration.
 
 Tools and Technologies
-Python
+Python 3
 SQLite
 SQL
 Pandas
-OpenPyXL
-Visual Studio Code
-Database
+VS Code
+Business Questions
+1. Customer Account Tier Analysis
 
-The project uses an SQLite database containing 20 sample wholesale orders.
+SQL technique: INNER JOIN
 
-The orders table includes:
+Combines orders and customer records to identify each customer's account tier.
 
-order_id
-customer_name
-county
-product
-quantity
-unit_price
-order_date
-status
-Business Questions Answered
-What are all the orders from Mombasa county?
-Which are the top 10 orders by total value?
-What is the total revenue per county?
-Which pending orders are worth more than KES 50,000?
-Which three products have the highest total quantity sold?
-Project Features
-Connects Python to an SQLite database.
-Executes SQL queries using pandas.
-Calculates order values and county revenue.
-Identifies high-value pending orders.
-Identifies the best-selling products.
-Exports all five reports into one Excel workbook.
-How to Run the Project
-1. Install Python
+Business value: Helps sales managers understand purchasing activity across gold, silver and bronze customers.
 
-Download Python from https://www.python.org/downloads/
+2. Repeat Customer Analysis
 
-2. Install the required libraries
+SQL technique: GROUP BY, COUNT, SUM and HAVING.
 
-Run:
+Identifies customers who have placed more than three orders and calculates their total spending.
 
+Business value: Helps identify loyal, high-value customers for retention and relationship management.
+
+3. Top Customer Per County
+
+SQL technique: Common Table Expressions and ROW_NUMBER() window function.
+
+Ranks customers according to their revenue contribution within each county.
+
+Business value: Helps management identify leading customers and understand geographical revenue concentration.
+
+4. County Revenue Summary
+
+Aggregates total revenue and order counts across counties.
+
+Business value: Helps management compare regional performance and prioritise sales activities.
+
+Key Findings
+Total recorded revenue: KES 1,224,600.
+Total orders analysed: 20.
+Counties represented: 7.
+Mombasa recorded the highest county revenue at KES 373,500.
+No customers had placed more than three orders in the supplied dataset.
+Project Outputs
+
+The Python script generates:
+
+orders_with_account_tiers.csv
+repeat_customers.csv
+top_customer_per_county.csv
+county_revenue_summary.csv
+How to Run
+Clone this repository.
+Install dependencies:
 bash
-python -m pip install -r requirements.txt
+pip install -r requirements.txt
 
-3. Run the reporting script
-
+Ensure wholesale_reporting.db is in the project directory.
 Run:
-
 bash
-python report.py
+python main.py
 
-4. View the Excel reports
+Pricing Note
 
-Open:
-
-weekly_sales_report.xlsx
-
-The workbook contains five worksheets, one for each business report.
-
-Project Structure
-text
-wholesale_reporting/
-│
-├── wholesale_reporting.db
-├── report.py
-├── requirements.txt
-├── README.md
-└── weekly_sales_report.xlsx
-
-Business Value
-
-This reporting system reduces repetitive manual reporting work by automating five recurring business questions.
-
-It provides management with information about sales performance, county revenue, outstanding orders and product demand.
+Estimated professional fee: KES 5,000–10,000 for SQL reporting, SQLite integration, pandas analysis, data validation and documentation, depending on project complexity.
 
 Author
 
-Data Analytics Portfolio Project
-
-Data Disclaimer
-
-The database contains sample data created for learning and demonstration purposes. It does not contain real customer information.
+SQL and Python Data Analytics Portfolio Project.
