@@ -1,6 +1,19 @@
-
+# Python
 __pycache__/
 *.pyc
 .venv/
-venv/
-.DS_Store
+
+# Private databases
+*.db
+
+# Generated reports
+*_summary.csv
+orders_with_account_tiers.csv
+repeat_customers.csv
+top_customer_per_county.csv
+
+# Generated previews
+/report_preview.png/
+
+# Environment files
+.env

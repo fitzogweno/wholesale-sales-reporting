@@ -1,76 +1,84 @@
-Nairobi Distributor – Customer Revenue Analysis
-Project Overview
 
-This project analyses customer purchasing behaviour and revenue distribution for a wholesale distributor operating across seven Kenyan counties.
+# County Sales Report Automation
 
-Using SQLite, SQL and Python (pandas), the project examines customer account tiers, repeat purchasing behaviour, and county-level revenue concentration.
+## Project Overview
 
-Tools and Technologies
-Python 3
-SQLite
-SQL
-Pandas
-VS Code
-Business Questions
-1. Customer Account Tier Analysis
+This project automates county-level sales reporting
+for a wholesale distributor using Python, SQLite
+and pandas.
 
-SQL technique: INNER JOIN
+The system accepts a county name, start date and
+end date, then generates a sales summary grouped
+by product.
 
-Combines orders and customer records to identify each customer's account tier.
+## Technologies Used
 
-Business value: Helps sales managers understand purchasing activity across gold, silver and bronze customers.
+- Python
+- SQLite
+- Pandas
 
-2. Repeat Customer Analysis
+## Features
 
-SQL technique: GROUP BY, COUNT, SUM and HAVING.
+- Connects to an existing SQLite database.
+- Accepts county and date-range parameters.
+- Uses parameterized SQL queries for security.
+- Calculates total orders per product.
+- Calculates total quantities sold.
+- Calculates total revenue in Kenyan Shillings.
+- Returns results as a pandas DataFrame.
+- Handles queries with no matching records.
 
-Identifies customers who have placed more than three orders and calculates their total spending.
+## Example Usage
 
-Business value: Helps identify loyal, high-value customers for retention and relationship management.
+```python
+report = get_county_report(
+    "Mombasa",
+    "2026-01-01",
+    "2026-12-31"
+)
 
-3. Top Customer Per County
+print(report)
+```
 
-SQL technique: Common Table Expressions and ROW_NUMBER() window function.
+## Example Output
 
-Ranks customers according to their revenue contribution within each county.
+| product | total_orders | total_quantity | total_revenue_kes |
+|---|---:|---:|---:|
+| Cooking Oil | 3 | 270 | 229500.00 |
+| Rice | 1 | 30 | 96000.00 |
+| Maize Flour | 1 | 400 | 48000.00 |
 
-Business value: Helps management identify leading customers and understand geographical revenue concentration.
+## Business Value
 
-4. County Revenue Summary
+The automation reduces repetitive manual SQL
+reporting, saves employee time, improves consistency
+and reduces the risk of human error.
 
-Aggregates total revenue and order counts across counties.
+It allows the operations team to generate county
+sales reports quickly by changing only the input
+parameters.
 
-Business value: Helps management compare regional performance and prioritise sales activities.
+## Testing
 
-Key Findings
-Total recorded revenue: KES 1,224,600.
-Total orders analysed: 20.
-Counties represented: 7.
-Mombasa recorded the highest county revenue at KES 373,500.
-No customers had placed more than three orders in the supplied dataset.
-Project Outputs
+The function was tested using:
 
-The Python script generates:
+1. Mombasa - full-year date range
+2. Kisumu - full-year date range
+3. Nairobi - full-year date range
+4. Mombasa - January date range
+5. Unknown County - no-results test
 
-orders_with_account_tiers.csv
-repeat_customers.csv
-top_customer_per_county.csv
-county_revenue_summary.csv
-How to Run
-Clone this repository.
-Install dependencies:
-bash
-pip install -r requirements.txt
+All five tests executed successfully.
 
-Ensure wholesale_reporting.db is in the project directory.
-Run:
-bash
-python main.py
+## Pricing Consideration
 
-Pricing Note
+Automation creates business value by reducing
+weekly manual reporting effort.
 
-Estimated professional fee: KES 5,000–10,000 for SQL reporting, SQLite integration, pandas analysis, data validation and documentation, depending on project complexity.
+For example, if an employee spends two hours
+preparing reports each week at KES 500 per hour,
+the annual manual labour cost is KES 52,000.
 
-Author
-
-SQL and Python Data Analytics Portfolio Project.
+Automating the process can significantly reduce
+this recurring cost while improving reporting
+efficiency.
