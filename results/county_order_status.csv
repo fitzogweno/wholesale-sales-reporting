@@ -1,0 +1,8 @@
+county,total_orders,completed_percentage,pending_percentage,cancelled_percentage
+Kiambu,2,100.0,0.0,0.0
+Kisumu,4,75.0,25.0,0.0
+Mombasa,5,60.0,40.0,0.0
+Nairobi,3,66.67,33.33,0.0
+Nakuru,3,66.67,33.33,0.0
+Nyeri,2,0.0,100.0,0.0
+Uasin Gishu,1,0.0,100.0,0.0

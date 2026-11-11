@@ -1,84 +1,66 @@
+Wholesale Distributor — SQL Trend Analysis
+Project Overview
 
-# County Sales Report Automation
+This project analyses wholesale distributor orders using SQLite, SQL window functions and Python pandas.
 
-## Project Overview
+The objective is to provide management with insights into order fulfilment, customer purchasing trends and cumulative revenue performance.
 
-This project automates county-level sales reporting
-for a wholesale distributor using Python, SQLite
-and pandas.
+Tools and Technologies
+SQLite — Database management and SQL analysis
+Python — Analysis execution
+Pandas — Data extraction and presentation
+VS Code — Development environment
+Database Structure
 
-The system accepts a county name, start date and
-end date, then generates a sales summary grouped
-by product.
+The database contains three tables:
 
-## Technologies Used
+orders
+customers
+practice_customers
 
-- Python
-- SQLite
-- Pandas
+The primary analysis uses the orders table.
 
-## Features
+Analysis and Findings
+1. Order Status Percentages by County
 
-- Connects to an existing SQLite database.
-- Accepts county and date-range parameters.
-- Uses parameterized SQL queries for security.
-- Calculates total orders per product.
-- Calculates total quantities sold.
-- Calculates total revenue in Kenyan Shillings.
-- Returns results as a pandas DataFrame.
-- Handles queries with no matching records.
+SQL concepts: GROUP BY, CASE WHEN, SUM, COUNT and ROUND.
 
-## Example Usage
+The analysis calculates the percentage of delivered, pending and cancelled orders in each county.
 
-```python
-report = get_county_report(
-    "Mombasa",
-    "2026-01-01",
-    "2026-12-31"
-)
+Board Report Interpretation:
 
-print(report)
-```
+Order fulfilment varies considerably across counties, with Kiambu achieving 100% completion while Nyeri and Uasin Gishu have all recorded orders pending; management should prioritise investigating outstanding deliveries in these counties and monitor Mombasa, which has a 40% pending rate.
 
-## Example Output
+2. Consecutive Month-on-Month Customer Order Growth
 
-| product | total_orders | total_quantity | total_revenue_kes |
-|---|---:|---:|---:|
-| Cooking Oil | 3 | 270 | 229500.00 |
-| Rice | 1 | 30 | 96000.00 |
-| Maize Flour | 1 | 400 | 48000.00 |
+SQL concepts: Common Table Expressions (CTEs), LAG and window functions.
 
-## Business Value
+The analysis compares each customer's monthly order value with the previous month's value and identifies customers with at least two consecutive monthly increases.
 
-The automation reduces repetitive manual SQL
-reporting, saves employee time, improves consistency
-and reduces the risk of human error.
+Board Report Interpretation:
 
-It allows the operations team to generate county
-sales reports quickly by changing only the input
-parameters.
+The available reporting period contains only October 2026 data, preventing a reliable assessment of consecutive month-on-month customer order value growth; management should extend historical data coverage before drawing conclusions about sustained customer growth.
 
-## Testing
+Data limitation: The database contains only one month of order records. Consequently, no customers can currently be identified as having two consecutive monthly increases.
 
-The function was tested using:
+3. Running Total of Revenue by Date
 
-1. Mombasa - full-year date range
-2. Kisumu - full-year date range
-3. Nairobi - full-year date range
-4. Mombasa - January date range
-5. Unknown County - no-results test
+SQL concepts: SUM OVER, window functions and cumulative aggregation.
 
-All five tests executed successfully.
+Daily order value is calculated by multiplying quantity by unit price. The daily values are then accumulated chronologically across all counties.
 
-## Pricing Consideration
+Board Report Interpretation:
 
-Automation creates business value by reducing
-weekly manual reporting effort.
+The cumulative order value reached 1,224,600 between 20 and 29 October 2026, with the highest daily contribution of 271,500 recorded on 29 October, demonstrating the importance of monitoring daily sales contributions to assess overall trading performance.
 
-For example, if an employee spends two hours
-preparing reports each week at KES 500 per hour,
-the annual manual labour cost is KES 52,000.
+Note: Monetary values are expressed in the database's unit_price currency. Pending orders are included in this order-value calculation; this should not be interpreted as recognised revenue.
 
-Automating the process can significantly reduce
-this recurring cost while improving reporting
-efficiency.
+Project Conclusion
+
+The analysis demonstrates how SQL can transform transactional order data into actionable business insights.
+
+The findings highlight differences in county-level fulfilment performance, the importance of historical data for customer growth analysis, and the value of cumulative revenue tracking.
+
+Author
+
+Wholesale Reporting — SQL and Python Analytics Project
